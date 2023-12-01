@@ -7,13 +7,42 @@ async function getText() {
 }
 
 async function getTextArray() {
-  const textInputArray = (await getText()).split("\n");
+  const textInputArray = (await getText()).split("\r\n");
 
-  console.log(textInputArray);
+  return textInputArray;
+}
+
+function getInputSum(input) {
+  let sum = "";
+
+  for (let i = 0; i < input.length; i++) {
+    if (!isNaN(Number(input[i]))) {
+      sum += input[i];
+
+      for (let j = input.length - 1; j >= i; j--) {
+        if (!isNaN(Number(input[j]))) {
+          sum += input[j];
+
+          break;
+        }
+      }
+      break;
+    }
+  }
+
+  return Number(sum);
 }
 
 async function getAnswer() {
   let data = await getTextArray();
+
+  let totalSum = 0;
+
+  data.forEach((input) => {
+    totalSum += getInputSum(input);
+  });
+
+  console.log(totalSum);
 }
 
 getAnswer();
