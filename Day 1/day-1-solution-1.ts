@@ -1,7 +1,7 @@
 const fs = require("fs").promises;
 
-let textInput = undefined;
-let textInputArray = undefined;
+let textInput: string;
+let textInputArray: string[];
 
 async function getTextInput() {
   const data = await fs.readFile("./Day 1/day-1-puzzle-input.txt", "utf-8");
@@ -10,16 +10,18 @@ async function getTextInput() {
   console.log(textInput);
 }
 
-function getInputArray() {
+function getTextArray() {
   textInput = textInput.replaceAll("'", "");
 
   textInputArray = textInput.split("\n");
 }
 
+function getInputSum(string: string) {}
+
 async function getAnswer() {
   await getTextInput();
 
-  getInputArray();
+  getTextArray();
 }
 
 getAnswer();
